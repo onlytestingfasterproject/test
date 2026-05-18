@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Takbir Hassan - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      background-color: #111827;
+      color: #f3f4f6;
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .channel-box {
+      background: linear-gradient(135deg, rgba(250, 204, 21, 0.25) 0%, rgba(250, 204, 21, 0.15) 100%);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      padding: 1.5rem 2rem;
+      border-radius: 9999px;
+      animation: pulseBox 2s infinite;
+    }
+
+    @keyframes pulseBox {
+      0% {
+        box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(250, 204, 21, 0.8);
+      }
+      100% {
+        box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+      }
+    }
+
+    .announcement-banner {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(250, 204, 21, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
+      }
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    .section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .click-effect {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .click-effect:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 15px rgba(250, 204, 21, 0.7) !important;
+    }
+
+    .achievement-badge {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement-badge::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 55%
+      );
+      transform: rotate(30deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        left: -50%;
+      }
+      100% {
+        left: 150%;
+      }
+    }
+
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .tech-stack-icon {
+      transition: all 0.3s ease;
+    }
+
+    .tech-stack-icon:hover {
+      transform: scale(1.2) rotate(10deg);
+      filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
+    }
+
+    .os-icon {
+      transition: all 0.3s ease;
+      filter: grayscale(30%);
+    }
+
+    .os-icon:hover {
+      filter: grayscale(0%) drop-shadow(0 0 8px rgba(250, 204, 21, 0.5));
+      transform: scale(1.1);
+    }
+
+    .security-badge {
+      animation: pulse 2s infinite alternate;
+    }
+    
+    @media (max-width: 640px) {
+      .channel-box {
+        padding: 1rem 1.5rem;
+      }
+      .special-person-box {
+        max-width: 95%;
+        padding: 0.5rem;
+        font-size: 0.7rem;
+      }
+      .announcement-banner {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+      }
+      .announcement-banner span {
+        padding: 0.2rem 0.4rem;
+        margin-right: 0.3rem;
+      }
+      body {
+        padding: 0.75rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="p-4 md:p-6 relative" oncontextmenu="return false;">
+
+  <!-- Floating announcement banner -->
+  <div class="fixed top-2 md:top-4 left-0 right-0 z-50 flex justify-center px-2 pointer-events-none">
+    <div class="announcement-banner bg-yellow-400/90 text-gray-900 rounded-xl shadow-lg pointer-events-auto" style="width: auto; max-width: 90%;">
+      <div class="flex items-center justify-center p-2 md:p-3 whitespace-nowrap">
+        <span class="bg-gray-900 text-yellow-400 rounded-full px-2 md:px-3 py-0.5 md:py-1 mr-2 md:mr-3 text-[10px] md:text-xs">New!</span>
+        <span class="font-bold text-[10px] md:text-sm whitespace-nowrap">Coming Soon: <span class="text-gray-900">Fritemp</span> - My new template downloading app!</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-20 md:mt-28">
+    <h1 class="text-3xl md:text-6xl font-bold text-yellow-400">Hey, I'm Takbir Hassan</h1>
+    <div id="typewriter-effect" class="mt-4 md:mt-6"></div>
+
+    <div class="channel-box inline-block mt-6 md:mt-8 mb-4">
+      <div class="text-yellow-300 font-bold text-2xl md:text-4xl">Faster Software Developer</div>
+      <div class="text-yellow-200 mt-1 md:mt-2 text-sm md:text-base">3+ Years Experience | Java Expert</div>
+    </div>
+
+    <div class="flex justify-center gap-3 md:gap-4 mt-4 flex-wrap">
+      <button class="click-effect bg-red-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-bold hover:bg-red-500 transition-all text-sm md:text-base">Subscribe</button>
+      <button class="click-effect bg-green-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-bold hover:bg-green-500 transition-all text-sm md:text-base">Telegram</button>
+      <button class="click-effect bg-gray-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-bold hover:bg-gray-700 transition-all text-sm md:text-base">GitHub</button>
+    </div>
+
+    <div class="special-person-box inline-block px-4 md:px-6 py-2 md:py-3 rounded-full mt-8 md:mt-10 mb-4 md:mb-6 bg-blue-900 border border-blue-500 text-sm md:text-base">
+      <span class="text-blue-300 font-bold md:text-xl">Special Person:</span>
+      <span class="ml-1 md:ml-2">
+        <a href="https://t.me/Syntaxspin" target="_blank" class="text-blue-200 hover:underline">@Syntaxspin</a>,
+        <a href="https://t.me/socsketch" target="_blank" class="text-blue-200 hover:underline">@socsketch</a>,
+        <a href="https://t.me/mdshantomia2021" target="_blank" class="text-blue-200 hover:underline">@mdshantomia2021</a>,
+        <a href="https://t.me/rahad119" target="_blank" class="text-blue-200 hover:underline">@rahad119</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="scroll-down hidden md:block">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-400 floating-element" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+
+  <!-- Achievement Badges -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16 text-center section">
+    <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl transition-all hover:bg-gray-700/80 click-effect achievement-badge">
+      <h2 class="text-2xl md:text-3xl text-yellow-300 font-bold">3+</h2>
+      <p class="text-gray-300 mt-1 md:mt-2 text-xs md:text-sm">Years of Experience</p>
+    </div>
+    <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl transition-all hover:bg-gray-700/80 click-effect achievement-badge">
+      <h2 class="text-2xl md:text-3xl text-yellow-300 font-bold">7+</h2>
+      <p class="text-gray-300 mt-1 md:mt-2 text-xs md:text-sm">Technical Skills</p>
+    </div>
+    <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl transition-all hover:bg-gray-700/80 click-effect achievement-badge">
+      <h2 class="text-2xl md:text-3xl text-yellow-300 font-bold">60+</h2>
+      <p class="text-gray-300 mt-1 md:mt-2 text-xs md:text-sm">Projects Completed</p>
+    </div>
+    <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl transition-all hover:bg-gray-700/80 click-effect achievement-badge">
+      <h2 class="text-2xl md:text-3xl text-yellow-300 font-bold">24+</h2>
+      <p class="text-gray-300 mt-1 md:mt-2 text-xs md:text-sm">Satisfied Clients</p>
+    </div>
+  </div>
+
+  <!-- Tech Stack Section -->
+  <div class="mt-12 md:mt-20 section">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center text-white">My Tech Stack</h2>
+    <div class="flex flex-wrap justify-center gap-4 md:gap-8 p-4 md:p-6 blur-effect rounded-xl md:rounded-2xl">
+      <div class="tech-stack-icon text-4xl md:text-5xl" title="Android">📱</div>
+      <div class="tech-stack-icon text-4xl md:text-5xl" title="Supabase">🔶</div>
+      <div class="tech-stack-icon text-4xl md:text-5xl" title="Java">☕</div>
+      <div class="tech-stack-icon text-4xl md:text-5xl" title="Roblox Studio">🎮</div>
+      <div class="tech-stack-icon text-4xl md:text-5xl" title="Material Design">✨</div>
+      <div class="tech-stack-icon text-4xl md:text-5xl" title="OS Editing">✏️</div>
+      <div class="tech-stack-icon text-4xl md:text-5xl" title="Firebase">🔥</div>
+      <div class="tech-stack-icon text-4xl md:text-5xl" title="Git">🐙</div>
+    </div>
+  </div>
+
+  <!-- Skills Section -->
+  <div class="mt-12 md:mt-20 section">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center text-white">My Skills</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl skill-card click-effect">
+        <h3 class="text-lg md:text-xl font-semibold text-yellow-300 mb-2 md:mb-4">Development</h3>
+        <div class="space-y-2 md:space-y-4">
+          <div>
+            <p class="text-yellow-300 font-semibold text-sm md:text-base">Java - 3 Years Experience</p>
+            <div class="w-full bg-gray-700 rounded-full h-2 md:h-3">
+              <div class="bg-yellow-400 h-2 md:h-3 rounded-full w-3/4"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-yellow-300 font-semibold text-sm md:text-base">Firebase - 2 Years Experience</p>
+            <div class="w-full bg-gray-700 rounded-full h-2 md:h-3">
+              <div class="bg-yellow-400 h-2 md:h-3 rounded-full w-2/3"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-yellow-300 font-semibold text-sm md:text-base">Roblox Studio - 6 Month Experience</p>
+            <div class="w-full bg-gray-700 rounded-full h-2 md:h-3">
+              <div class="bg-yellow-400 h-2 md:h-3 rounded-full w-1/2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl skill-card click-effect">
+        <h3 class="text-lg md:text-xl font-semibold text-yellow-300 mb-2 md:mb-4">Design</h3>
+        <div class="space-y-2 md:space-y-4">
+          <div>
+            <p class="text-yellow-300 font-semibold text-sm md:text-base">UI/UX Design - 3 Years Experience</p>
+            <div class="w-full bg-gray-700 rounded-full h-2 md:h-3">
+              <div class="bg-yellow-400 h-2 md:h-3 rounded-full w-5/6"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-yellow-300 font-semibold text-sm md:text-base">Material Design - 5 Month Experience</p>
+            <div class="w-full bg-gray-700 rounded-full h-2 md:h-3">
+              <div class="bg-yellow-400 h-2 md:h-3 rounded-full w-3/4"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-yellow-300 font-semibold text-sm md:text-base">OS Editing - 1 Years Experience</p>
+            <div class="w-full bg-gray-700 rounded-full h-2 md:h-3">
+              <div class="bg-yellow-400 h-2 md:h-3 rounded-full w-2/3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Projects -->
+  <div class="mt-12 md:mt-20 section">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center text-white">Featured Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl project-card click-effect">
+        <div class="bg-gray-700 h-32 md:h-40 rounded-xl mb-3 md:mb-4 flex items-center justify-center text-yellow-300 text-3xl md:text-4xl floating-element">📱</div>
+        <h3 class="text-lg md:text-xl font-semibold text-yellow-300">Link Earn</h3>
+        <p class="text-gray-300 mt-1 md:mt-2 text-sm md:text-base">Beautiful earning application with Material 3 design and dark theme support.</p>
+        <div class="mt-2 md:mt-4 flex justify-center space-x-1 md:space-x-2 flex-wrap">
+          <span class="bg-yellow-400/20 text-yellow-300 px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-xs">Java</span>
+          <span class="bg-yellow-400/20 text-yellow-300 px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-xs">Firebase</span>
+          <span class="bg-yellow-400/20 text-yellow-300 px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-xs">Material 3</span>
+        </div>
+      </div>
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl project-card click-effect">
+        <div class="bg-gray-700 h-32 md:h-40 rounded-xl mb-3 md:mb-4 flex items-center justify-center text-yellow-300 text-3xl md:text-4xl floating-element">🛒</div>
+        <h3 class="text-lg md:text-xl font-semibold text-yellow-300">Advance WebView</h3>
+        <p class="text-gray-300 mt-1 md:mt-2 text-sm md:text-base">Complete Website to App Experience With Beautiful Ui and Animation.</p>
+        <div class="mt-2 md:mt-4 flex justify-center space-x-1 md:space-x-2 flex-wrap">
+          <span class="bg-yellow-400/20 text-yellow-300 px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-xs">Java</span>
+          <span class="bg-yellow-400/20 text-yellow-300 px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-xs">Webview</span>
+          <span class="bg-yellow-400/20 text-yellow-300 px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-xs">Material 3</span>
+        </div>
+      </div>
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl project-card click-effect">
+        <div class="bg-gray-700 h-32 md:h-40 rounded-xl mb-3 md:mb-4 flex items-center justify-center text-yellow-300 text-3xl md:text-4xl floating-element">🎵</div>
+        <h3 class="text-lg md:text-xl font-semibold text-yellow-300">Website Task Earning</h3>
+        <p class="text-gray-300 mt-1 md:mt-2 text-sm md:text-base">An earning app where users can earn income by completing tasks.</p>
+        <div class="mt-2 md:mt-4 flex justify-center space-x-1 md:space-x-2 flex-wrap">
+          <span class="bg-yellow-400/20 text-yellow-300 px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-xs">Java</span>
+          <span class="bg-yellow-400/20 text-yellow-300 px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-xs">Firebase</span>
+          <span class="bg-yellow-400/20 text-yellow-300 px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-xs">Material</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upcoming Project Section -->
+  <div class="mt-12 md:mt-20 section bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 p-6 md:p-8 rounded-xl md:rounded-2xl blur-effect">
+    <h2 class="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-center text-yellow-300">Upcoming Project</h2>
+    <div class="max-w-2xl mx-auto text-center">
+      <h3 class="text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">Fritemp</h3>
+      <p class="text-gray-300 text-sm md:text-lg">Revolutionary template downloading app with AI-powered predictions and beautiful Material You theming.</p>
+      <div class="mt-4 md:mt-6 flex justify-center space-x-2 md:space-x-4 flex-wrap">
+        <button class="click-effect bg-yellow-400 text-gray-900 px-4 md:px-6 py-1 md:py-2 rounded-full font-bold hover:bg-yellow-300 transition-all text-sm md:text-base">Learn More</button>
+        <button class="click-effect border-2 border-yellow-400 text-yellow-400 px-4 md:px-6 py-1 md:py-2 rounded-full font-bold hover:bg-yellow-400/10 transition-all text-sm md:text-base">Notify Me</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Work Process Section -->
+  <div class="mt-12 md:mt-20 section">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center text-white">My Work Process</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+      <div class="blur-effect p-3 md:p-4 rounded-lg md:rounded-xl text-center click-effect">
+        <div class="text-3xl md:text-4xl mb-1 md:mb-2">💡</div>
+        <h3 class="text-yellow-300 font-semibold text-sm md:text-base">Concept</h3>
+        <p class="text-gray-300 text-xs md:text-sm">Ideation & Planning</p>
+      </div>
+      <div class="blur-effect p-3 md:p-4 rounded-lg md:rounded-xl text-center click-effect">
+        <div class="text-3xl md:text-4xl mb-1 md:mb-2">✏️</div>
+        <h3 class="text-yellow-300 font-semibold text-sm md:text-base">Design</h3>
+        <p class="text-gray-300 text-xs md:text-sm">UI/UX Prototyping</p>
+      </div>
+      <div class="blur-effect p-3 md:p-4 rounded-lg md:rounded-xl text-center click-effect">
+        <div class="text-3xl md:text-4xl mb-1 md:mb-2">💻</div>
+        <h3 class="text-yellow-300 font-semibold text-sm md:text-base">Develop</h3>
+        <p class="text-gray-300 text-xs md:text-sm">Clean Code</p>
+      </div>
+      <div class="blur-effect p-3 md:p-4 rounded-lg md:rounded-xl text-center click-effect">
+        <div class="text-3xl md:text-4xl mb-1 md:mb-2">🚀</div>
+        <h3 class="text-yellow-300 font-semibold text-sm md:text-base">Launch</h3>
+        <p class="text-gray-300 text-xs md:text-sm">Deploy & Maintain</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Me Section -->
+  <div class="mt-12 md:mt-20 text-center section">
+    <h2 class="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-white">About Me</h2>
+    <div class="max-w-2xl mx-auto blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl">
+      <p class="text-gray-300 text-sm md:text-lg">I'm Takbir Hassan, a passionate developer and designer specializing in building modern Android apps with Material 3 and dark themes. I love creating clean UI, solving problems, and turning ideas into reality.</p>
+      <p class="text-gray-300 text-sm md:text-lg mt-2 md:mt-4">When I'm not coding, you can find me designing new interfaces, contributing to open source projects, or teaching others about mobile development.</p>
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <div class="mt-12 md:mt-20 text-center section">
+    <h2 class="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-white">Testimonials</h2>
+    <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl click-effect">
+        <p class="text-gray-300 italic text-sm md:text-base">"Takbir delivered an amazing app that exceeded our expectations. His attention to detail is remarkable."</p>
+        <p class="text-yellow-300 mt-2 md:mt-4 font-semibold text-sm md:text-base">- Sarah Johnson, CEO</p>
+      </div>
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl click-effect">
+        <p class="text-gray-300 italic text-sm md:text-base">"Working with Takbir was a pleasure. He understood our vision and brought it to life beautifully."</p>
+        <p class="text-yellow-300 mt-2 md:mt-4 font-semibold text-sm md:text-base">- Michael Chen, Product Manager</p>
+      </div>
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl click-effect">
+        <p class="text-gray-300 italic text-sm md:text-base">"His Java expertise and rapid development saved our project timeline. Highly recommended!"</p>
+        <p class="text-yellow-300 mt-2 md:mt-4 font-semibold text-sm md:text-base">- David Kim, Tech Lead</p>
+      </div>
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl click-effect">
+        <p class="text-gray-300 italic text-sm md:text-base">"One of the most dedicated developers I've worked with. Delivers quality code consistently."</p>
+        <p class="text-yellow-300 mt-2 md:mt-4 font-semibold text-sm md:text-base">- Emily Rodriguez, Project Manager</p>
+      </div>
+      <div class="blur-effect p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl click-effect col-span-1 md:col-span-2">
+        <p class="text-gray-300 italic text-sm md:text-base">"Takbir's Material Design implementation was flawless. He truly understands modern Android development."</p>
+        <p class="text-yellow-300 mt-2 md:mt-4 font-semibold text-sm md:text-base">- James Wilson, Design Director</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Operating Systems Section - FIXED ICONS -->
+  <div class="mt-12 md:mt-20 section">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center text-white">Operating Systems I Use</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 p-4 md:p-6 blur-effect rounded-xl md:rounded-2xl">
+      <div class="flex flex-col items-center os-icon click-effect">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" alt="Ubuntu" class="h-12 md:h-16 w-12 md:w-16 object-contain">
+        <span class="text-yellow-300 mt-1 md:mt-2 text-sm md:text-base">Ubuntu</span>
+      </div>
+      <div class="flex flex-col items-center os-icon click-effect">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Kali Linux" class="h-12 md:h-16 w-12 md:w-16 object-contain">
+        <span class="text-yellow-300 mt-1 md:mt-2 text-sm md:text-base">Kali Linux</span>
+      </div>
+      <div class="flex flex-col items-center os-icon click-effect">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows 11" class="h-12 md:h-16 w-12 md:w-16 object-contain">
+        <span class="text-yellow-300 mt-1 md:mt-2 text-sm md:text-base">Windows 11</span>
+      </div>
+      <div class="flex flex-col items-center os-icon click-effect">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" alt="Android" class="h-12 md:h-16 w-12 md:w-16 object-contain">
+        <span class="text-yellow-300 mt-1 md:mt-2 text-sm md:text-base">Android 7-14</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Development Tools Section - FIXED ICONS -->
+  <div class="mt-8 md:mt-10 section">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center text-white">Development Tools</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 p-4 md:p-6 blur-effect rounded-xl md:rounded-2xl">
+      <div class="flex flex-col items-center os-icon click-effect">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio" class="h-12 md:h-16 w-12 md:w-16 object-contain">
+        <span class="text-yellow-300 mt-1 md:mt-2 text-sm md:text-base">Android Studio</span>
+      </div>
+      <div class="flex flex-col items-center os-icon click-effect">
+        <div class="h-12 md:h-16 w-12 md:w-16 bg-gray-700 rounded-xl flex items-center justify-center text-yellow-300 text-2xl md:text-3xl">📱</div>
+        <span class="text-yellow-300 mt-1 md:mt-2 text-sm md:text-base">Sketchware Pro</span>
+      </div>
+      <div class="flex flex-col items-center os-icon click-effect">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" alt="WordPress" class="h-12 md:h-16 w-12 md:w-16 object-contain">
+        <span class="text-yellow-300 mt-1 md:mt-2 text-sm md:text-base">WordPress</span>
+      </div>
+      <div class="flex flex-col items-center os-icon click-effect">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" class="h-12 md:h-16 w-12 md:w-16 object-contain">
+        <span class="text-yellow-300 mt-1 md:mt-2 text-sm md:text-base">Laravel</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Website Security Section -->
+  <div class="mt-8 md:mt-10 section bg-gradient-to-r from-green-400/20 to-green-600/20 p-6 md:p-8 rounded-xl md:rounded-2xl blur-effect">
+    <h2 class="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-center text-green-300">Website Security</h2>
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="flex justify-center mb-4 md:mb-6">
+        <div class="security-badge bg-green-500/30 text-green-300 p-3 md:p-4 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 md:h-12 w-10 md:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+      </div>
+      <p class="text-gray-300 text-sm md:text-lg">This website is protected with advanced security measures:</p>
+      <ul class="mt-2 md:mt-4 text-gray-300 space-y-1 md:space-y-2 text-xs md:text-sm">
+        <li>• Right-click and text selection disabled to prevent content theft</li>
+        <li>• Secure HTTPS connection</li>
+        <li>• Regular security updates</li>
+        <li>• Protected against common web vulnerabilities</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="mt-12 md:mt-20 text-center section">
+    <h2 class="text-2xl font-bold mb-4 text-white">Get In Touch</h2>
+    <div class="max-w-md mx-auto blur-effect p-6 rounded-2xl shadow-xl">
+      <p class="text-gray-300 mb-4">Have a project in mind or want to collaborate?</p>
+      <a href="mailto:hello@example.com" class="click-effect inline-block bg-yellow-400 text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition-all">Contact Me</a>
+    </div>
+  </div>
+
+  <!-- Social Links Section -->
+  <div class="mt-20 text-center section">
+    <h2 class="text-2xl font-bold mb-4 text-white">Find Me On</h2>
+    <div class="flex justify-center space-x-6 flex-wrap gap-4">
+      <a href="https://github.com" class="click-effect text-white hover:text-yellow-300 text-xl md:text-3xl transition-all transform hover:scale-110">GitHub</a>
+      <a href="https://youtube.com" class="click-effect text-white hover:text-yellow-300 text-xl md:text-3xl transition-all transform hover:scale-110">YouTube</a>
+      <a href="https://t.me" class="click-effect text-white hover:text-yellow-300 text-xl md:text-3xl transition-all transform hover:scale-110">Telegram</a>
+      <a href="https://linkedin.com" class="click-effect text-white hover:text-yellow-300 text-xl md:text-3xl transition-all transform hover:scale-110">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-20 text-center text-gray-400 pb-10 section">
+    <div class="mb-4">
+      <p class="text-yellow-300 font-bold">© 2025 Takbir Hassan - Faster Software Developer</p>
+      <p class="mt-2">All rights reserved. This website was created with ❤️ by Takbir Hassan</p>
+    </div>
+    <div class="flex justify-center space-x-4 flex-wrap">
+      <a href="#" class="text-gray-400 hover:text-yellow-300">Privacy Policy</a>
+      <span>•</span>
+      <a href="#" class="text-gray-400 hover:text-yellow-300">Terms of Service</a>
+      <span>•</span>
+      <a href="#" class="text-gray-400 hover:text-yellow-300">DMCA</a>
+    </div>
+  </footer>
+
+  <button id="scrollToTopFab" class="fixed bottom-8 right-8 bg-yellow-400 text-gray-900 p-4 rounded-full shadow-lg hidden hover:bg-yellow-300 transition-all click-effect z-50">↑</button>
+
+  <script>
+    const texts = [
+      "Android Developer",
+      "UI/UX Designer", 
+      "Kotlin Expert",
+      "Java Expert",
+      "App Creator",
+      "Fritemp Creator",
+      "Open Source Enthusiast",
+      "Tech Blogger"
+    ];
+    const typewriterElement = document.getElementById('typewriter-effect');
+    let textIndex = 0;
+    let charIndex = 0;
+    let currentText = '';
+    let isDeleting = false;
+    const typingSpeed = 150;
+    const deletingSpeed = 80;
+    const pauseBetween = 1500;
+
+    function type() {
+      if (textIndex >= texts.length) textIndex = 0;
+      currentText = texts[textIndex];
+
+      if (!isDeleting) {
+        typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === currentText.length) {
+          isDeleting = true;
+          setTimeout(type, pauseBetween);
+          return;
+        }
+      } else {
+        typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          textIndex++;
+        }
+      }
+      setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    }
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      type();
+      const sections = document.querySelectorAll('.section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(section => observer.observe(section));
+    });
+
+    const scrollToTopFab = document.getElementById('scrollToTopFab');
+    window.addEventListener('scroll', () => {
+      scrollToTopFab.classList.toggle('hidden', window.scrollY <= 300);
+    });
+    scrollToTopFab.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    
+    document.querySelectorAll('.click-effect').forEach(element => {
+      element.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => this.style.transform = '', 200);
+      });
+    });
+  </script>
+</body>
+
+</html>
